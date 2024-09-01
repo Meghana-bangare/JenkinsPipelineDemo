@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment {
-        DIRECTORY_PATH = '/path/to/code'
+        DIRECTORY_PATH = 'C:\ProgramData\Jenkins\.jenkins\workspace\Task pipeline'
         TESTING_ENVIRONMENT = 'TestingEnv'
-        PRODUCTION_ENVIRONMENT = 'YourName'
+        PRODUCTION_ENVIRONMENT = 'Meghanaprod'
     }
     stages {
         stage('Build') {
