@@ -1,68 +1,46 @@
 pipeline {
     agent any
-
+    environment {
+        DIRECTORY_PATH = '/path/to/code'
+        TESTING_ENVIRONMENT = 'TestingEnv'
+        PRODUCTION_ENVIRONMENT = 'YourName'
+    }
     stages {
         stage('Build') {
             steps {
-                echo 'Building the application...'
-                // Specify a build tool, e.g., Maven
+                echo "Fetching the source code from the directory path: ${env.DIRECTORY_PATH}"
+                echo "Compile the code and generate necessary artifacts"
             }
         }
-
-        stage('Unit and Integration Tests') {
+        stage('Test') {
             steps {
-                echo 'Running unit and integration tests...'
-                // Specify test automation tools, e.g., JUnit, TestNG
+                echo "Running unit tests"
+                echo "Running integration tests"
             }
         }
-
-        stage('Code Analysis') {
+        stage('Code Quality Check') {
             steps {
-                echo 'Performing code analysis...'
-                // Use a tool like SonarQube for code analysis
+                echo "Checking the quality of the code"
             }
         }
-
-        stage('Security Scan') {
+        stage('Deploy') {
             steps {
-                echo 'Performing security scan...'
-                // Use a tool like OWASP ZAP or Snyk
+                echo "Deploying the application to the testing environment: ${env.TESTING_ENVIRONMENT}"
             }
         }
-
-        stage('Deploy to Staging') {
+        stage('Approval') {
             steps {
-                echo 'Deploying to staging...'
-                // Deploy to a staging environment like AWS EC2
+                echo "Pausing for manual approval"
+                sleep 10
             }
         }
-
-        stage('Integration Tests on Staging') {
-            steps {
-                echo 'Running integration tests on staging...'
-                // Run tests on the staging environment
-            }
-        }
-
         stage('Deploy to Production') {
             steps {
-                echo 'Deploying to production...'
-                // Deploy to production environment
+                echo "Deploying the application to the production environment: ${env.PRODUCTION_ENVIRONMENT}"
             }
-        }
-    }
-
-    post {
-        success {
-            mail to: 'meghanabangare@gmail.com',
-                 subject: "Pipeline Success: ${currentBuild.fullDisplayName}",
-                 body: "The pipeline has succeeded."
-        }
-        failure {
-            mail to: 'meghanabangare@gmail.com',
-                 subject: "Pipeline Failed: ${currentBuild.fullDisplayName}",
-                 body: "The pipeline has failed."
         }
     }
 }
 
+
+  
