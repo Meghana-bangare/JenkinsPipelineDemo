@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DIRECTORY_PATH = 'C:\ProgramData\Jenkins\.jenkins\workspace\pipeline task'  
+        DIRECTORY_PATH = 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\pipeline task'  
         TESTING_ENVIRONMENT = 'TestEnv'
         PRODUCTION_ENVIRONMENT = 'MeghanaProd'
     }
